@@ -1,0 +1,25 @@
+# bytecode
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# environments
+.venv/
+venv/
+
+# build artifacts
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# runtime state
+*.log
+data/
+
+# editors
+.idea/
+.vscode/
+*.swp
+.DS_Store
