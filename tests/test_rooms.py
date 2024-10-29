@@ -54,3 +54,4 @@ class TestRoomRegistry:
         reg.get_or_create("y")
         assert len(reg) == 2
         assert list(reg) == ["x", "y"]
+
