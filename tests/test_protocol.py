@@ -84,3 +84,4 @@ class TestParseFrame:
 def test_sanitize_keeps_newline_only():
     text = sanitize_text("line1\nline2\x00\x1f")
     assert text == "line1\nline2"
+
