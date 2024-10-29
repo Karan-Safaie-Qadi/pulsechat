@@ -226,3 +226,4 @@ class NullWriter:
 
     def is_closing(self) -> bool:
         return False
+
