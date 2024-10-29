@@ -158,3 +158,4 @@ class TestRoster:
 
 def store_entries(handlers):
     return handlers.store.entries
+
