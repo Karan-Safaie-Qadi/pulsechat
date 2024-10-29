@@ -54,3 +54,4 @@ class TestSessionRegistry:
         s.rooms.add("general")
         assert s.joined("general") is True
         assert s.joined("random") is False
+
