@@ -191,3 +191,4 @@ class ChatError(RuntimeError):
         super().__init__(f"[{code}] {message}")
         self.code = code
         self.message = message
+
