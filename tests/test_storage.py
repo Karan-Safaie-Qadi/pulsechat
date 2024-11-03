@@ -47,3 +47,4 @@ class TestTranscriptStore:
         else:
             raise AssertionError("expected ValueError for missing ts")
         store.close()
+
