@@ -142,3 +142,4 @@ def test_bot_population_runs(tmp_path):
         return any(f.get("type") == "msg" for f in seen)
 
     assert asyncio.run(scenario())
+
