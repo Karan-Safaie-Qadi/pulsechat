@@ -82,3 +82,4 @@ class TranscriptStore:
                 log.warning("skipping corrupt transcript line in %s", room)
         return out
 
+
