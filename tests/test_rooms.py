@@ -56,3 +56,4 @@ class TestRoomRegistry:
         assert list(reg) == ["x", "y"]
 
 
+
