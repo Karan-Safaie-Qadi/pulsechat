@@ -56,3 +56,4 @@ def load_settings() -> Settings:
         history_limit=_int_env("PULSECHAT_HISTORY_LIMIT", 200),
         bot_rate=bot_rate,
     )
+
