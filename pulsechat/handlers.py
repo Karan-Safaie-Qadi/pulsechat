@@ -197,3 +197,4 @@ class ChatHandlers:
         payload = encode_frame(event)
         for member in self.sessions.all_sessions():
             member.writer.write(payload)
+
