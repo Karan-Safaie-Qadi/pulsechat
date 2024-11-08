@@ -88,3 +88,4 @@ class RoomRegistry:
 
     def __contains__(self, name: str) -> bool:
         return self.get(name) is not None
+
