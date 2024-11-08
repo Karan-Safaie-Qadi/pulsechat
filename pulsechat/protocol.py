@@ -148,3 +148,4 @@ def server_event(kind: str, **fields: Any) -> dict[str, Any]:
     return {"type": kind, "ts": now_ts(), **fields}
 
 
+
