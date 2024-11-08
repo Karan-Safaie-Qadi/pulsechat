@@ -57,3 +57,4 @@ def load_settings() -> Settings:
         bot_rate=bot_rate,
     )
 
+
