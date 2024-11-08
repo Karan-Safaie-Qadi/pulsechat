@@ -55,3 +55,4 @@ class TestSessionRegistry:
         assert s.joined("general") is True
         assert s.joined("random") is False
 
+
