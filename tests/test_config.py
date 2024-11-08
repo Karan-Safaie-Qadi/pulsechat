@@ -44,3 +44,4 @@ class TestLoadSettings:
         else:
             raise AssertionError("Settings should be frozen")
 
+
