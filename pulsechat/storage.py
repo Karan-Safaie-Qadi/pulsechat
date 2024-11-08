@@ -81,3 +81,4 @@ class TranscriptStore:
             except json.JSONDecodeError:
                 log.warning("skipping corrupt transcript line in %s", room)
         return out
+
