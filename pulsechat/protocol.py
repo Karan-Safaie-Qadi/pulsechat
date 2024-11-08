@@ -147,3 +147,4 @@ def server_event(kind: str, **fields: Any) -> dict[str, Any]:
     """Build a server->client event dict with a timestamp."""
     return {"type": kind, "ts": now_ts(), **fields}
 
+
