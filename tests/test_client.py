@@ -44,3 +44,4 @@ class TestChatClientUnit:
         assert ChatClient._is_error({"type": "ok"}) is False
 
 
+
