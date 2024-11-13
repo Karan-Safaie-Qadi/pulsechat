@@ -87,3 +87,4 @@ class TestBotEngine:
         assert len({b.name for b in engine.bots}) == 6
 
 
+
