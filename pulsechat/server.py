@@ -139,3 +139,4 @@ class ChatServer:
 
     def _fanout_room(self, room_name: str, event: dict) -> None:
         self.handlers._fanout_room(room_name, event)
+
