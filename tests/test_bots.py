@@ -85,3 +85,4 @@ class TestBotEngine:
         engine, handlers = make_engine(6)
         assert len(engine.bots) == 6
         assert len({b.name for b in engine.bots}) == 6
+
