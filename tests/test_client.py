@@ -42,3 +42,4 @@ class TestChatClientUnit:
         c = ChatClient.__new__(ChatClient)
         assert ChatClient._is_error({"type": "error"}) is True
         assert ChatClient._is_error({"type": "ok"}) is False
+
