@@ -78,3 +78,4 @@ class SessionRegistry:
         with self._lock:
             return list(self._by_sid.values())
 
+
