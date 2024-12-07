@@ -198,3 +198,4 @@ class ChatHandlers:
         for member in self.sessions.all_sessions():
             member.writer.write(payload)
 
+
