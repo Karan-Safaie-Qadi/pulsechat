@@ -55,3 +55,4 @@ class TestRoomRegistry:
         assert len(reg) == 2
         assert list(reg) == ["x", "y"]
 
+
