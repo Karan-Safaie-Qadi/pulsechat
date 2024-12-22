@@ -192,3 +192,4 @@ class ChatError(RuntimeError):
         self.code = code
         self.message = message
 
+
