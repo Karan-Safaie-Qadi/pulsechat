@@ -90,3 +90,4 @@ class RoomRegistry:
         return self.get(name) is not None
 
 
+
