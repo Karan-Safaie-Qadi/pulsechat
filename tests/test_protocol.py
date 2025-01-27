@@ -86,3 +86,4 @@ def test_sanitize_keeps_newline_only():
     assert text == "line1\nline2"
 
 
+
