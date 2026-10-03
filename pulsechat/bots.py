@@ -201,18 +201,29 @@ class BotEngine:
     async def _run_bot(self, bot: Bot) -> None:
         """Main loop for one bot: act, then sleep a human-ish interval."""
         await asyncio.sleep(self._rng.uniform(0.5, 3.0))
+        # seed the room with one early message so a fresh room never sits
+        # silent while every bot waits on its long think timer
+        if self._rng.random() < 0.5:
+            self._post(bot, "chat")
         while True:
             action = bot.persona.next_action(bot.rng)
             room = bot.pick_room()
             text = bot.compose(action)
             if text is not None and bot.session is not None:
                 await asyncio.sleep(bot.think_time() * 0.4)  # "typing" pause
-                frame = {"type": "msg", "room": room, "text": text}
-                try:
-                    self.handlers.dispatch(bot.session, frame)
-                except Exception as exc:  # noqa: BLE001
-                    log.debug("bot %s action failed: %s", bot.name, exc)
+                self._post(bot, text)
             await asyncio.sleep(bot.think_time())
+
+    def _post(self, bot: Bot, text: str | None) -> None:
+        """Send one action for a bot, tolerating handler errors."""
+        if text is None or bot.session is None:
+            return
+        room = bot.pick_room()
+        frame = {"type": "msg", "room": room, "text": text}
+        try:
+            self.handlers.dispatch(bot.session, frame)
+        except Exception as exc:  # noqa: BLE001
+            log.debug("bot %s action failed: %s", bot.name, exc)
 
 
 class NullWriter:
