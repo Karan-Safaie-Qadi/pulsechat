@@ -111,6 +111,34 @@ class TestMessaging:
         reply = handlers.dispatch(a, {"type": "history", "room": "general"})
         assert reply["messages"][0]["text"] == "one"
 
+    def test_history_pages_backwards(self, world):
+        handlers, connect = world
+        a = connect("a")
+        handlers.dispatch(a, {"type": "join", "room": "general"})
+        for i in range(7):
+            handlers.dispatch(a, {"type": "msg", "room": "general", "text": f"m{i}"})
+        page1 = handlers.dispatch(a, {"type": "history", "room": "general", "limit": 3})
+        assert [m["text"] for m in page1["messages"]] == ["m4", "m5", "m6"]
+        assert page1["more"] is True
+        cursor = page1["messages"][0]["id"]
+        page2 = handlers.dispatch(
+            a, {"type": "history", "room": "general", "limit": 3, "before_id": cursor}
+        )
+        assert [m["text"] for m in page2["messages"]] == ["m1", "m2", "m3"]
+        page3 = handlers.dispatch(
+            a, {"type": "history", "room": "general", "limit": 3, "before_id": page2["messages"][0]["id"]}
+        )
+        assert [m["text"] for m in page3["messages"]] == ["m0"]
+        assert page3["more"] is False
+
+    def test_history_bad_cursor(self, world):
+        handlers, connect = world
+        a = connect("a")
+        handlers.dispatch(a, {"type": "join", "room": "general"})
+        with pytest.raises(ProtocolError) as exc:
+            handlers.dispatch(a, {"type": "history", "room": "general", "before_id": "nope"})
+        assert exc.value.code == "bad_cursor"
+
     def test_priv_delivers(self, world):
         handlers, connect = world
         a = connect("a")

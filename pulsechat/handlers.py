@@ -174,7 +174,21 @@ class ChatHandlers:
         if not isinstance(limit, int) or isinstance(limit, bool) or limit < 1:
             limit = 50
         limit = min(limit, self.history_limit)
-        return server_event("history", room=room_name, messages=room.history[-limit:])
+        messages = room.history
+        before = frame.get("before_id")
+        if isinstance(before, str) and before:
+            for pos, entry in enumerate(messages):
+                if entry.get("id") == before:
+                    messages = messages[:pos]
+                    break
+            else:
+                raise ProtocolError("bad_cursor", f"unknown message id {before!r}")
+        return server_event(
+            "history",
+            room=room_name,
+            messages=messages[-limit:],
+            more=len(messages) > limit,
+        )
 
     def handle_ping(self, session: Session, frame: dict) -> dict:
         return server_event("pong")
